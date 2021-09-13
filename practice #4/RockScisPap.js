@@ -9,9 +9,11 @@ let computer = Math.floor(Math.random() * 3);
 
 // опишем все условия и будем выводить в консоль 'computer win' или 'player win'
 if (player === computer) console.log('no one wins')
-else if ((player === scissors && computer === paper) || (player === paper && computer === rock) || (player === rock && computer === rock)) console.log('player win')
+else if ((player === scissors && computer === paper) || (player === paper && computer === rock) || 
+		(player === rock && computer === scissors)) console.log('player win')
 else console.log('computer win')
 
 //Альтернативный варианнт второго условия
-// if ((player < computer) && !(player === rock && computer === paper) || player === paper && computer === rock) console.log('player win')
+// if ((player < computer) && !(player === rock && computer === paper) || 
+//	    player === paper && computer === rock) console.log('player win')
 
