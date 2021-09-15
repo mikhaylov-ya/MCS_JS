@@ -38,8 +38,7 @@ elementName.style = 'width: 700px', "имя_атрибута: значение_�
 
 /************************* ИНТЕРАКТИВНЫЙ МАКЕТ ************************/
 
-
-let num = prompt('Gimme numberrrr...');
-num = parseInt(num);
-if (num === 0) console.log(0);
-console.log(-num);
+//Анонимные функции
+let myFunc = function(elem) {
+	elem.style.backgroundColor = 'red';
+}
