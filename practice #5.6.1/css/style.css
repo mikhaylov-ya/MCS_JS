@@ -97,13 +97,20 @@ html { font-size: 16px; }
 	line-height: 1.5rem;
 }
 
-.result > p {
-	font: 1.2rem Georgia, sans-serif;
+
+.result {
+	width: 250px;
+	border: solid 1px;
+	display: flex;
+	flex-flow: column nowrap;
 }
 
-.result > p:first-child {
+.result > p {
+	font: 1.2rem Georgia, sans-serif;
 	margin: auto;
 }
+
+
 
 
 
