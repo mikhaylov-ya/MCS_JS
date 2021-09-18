@@ -62,7 +62,7 @@ html { font-size: 16px; }
 .page {
 	display: flex;
 	flex-flow: column nowrap;
-	height: 45vw;
+	height: calc(35vw + 200px);
 	background-color: palegoldenrod;
 	align-items: center;
 	gap: 5vw;
@@ -100,9 +100,9 @@ html { font-size: 16px; }
 
 .result {
 	width: 250px;
-	border: solid 1px;
 	display: flex;
 	flex-flow: column nowrap;
+	gap: 25px;
 }
 
 .result > p {
