@@ -61,6 +61,38 @@ html { font-size: 10px; }
 
 
 
+.crypto {
+	display: flex;
+	flex-flow: column nowrap;
+	margin: auto;
+	width: 100%;
+}
+
+.crypto > * {
+	margin: auto;
+	font: 2rem Georgia,sans-serif;
+	width: 50%;
+	margin-top: 2rem;
+}
+
+
+
+.bit {
+
+}
+.eth > div {
+	height: 20px;
+	background-color: firebrick;
+}
+.lite > div {
+	height: 20px;
+	background-color: lightblue;
+}
+
+.bit > div {
+	background-color: fuchsia;
+	height: 20px;
+}
 
 
 
