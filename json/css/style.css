@@ -54,37 +54,22 @@ a {
 	color: inherit;
 }
 
-html { font-size: 10px; }
+html { font: 20px Georgia,serif; }
 
 /* ================================ Блок дефолтный свойств =============================================== */
 
+.result {
+	margin: 1.5rem;
+}
 
-
-body {
-	font: 2rem Georgia,sans-serif;
+form {
+	margin: 1.5rem 0 0 1.5rem;
 }
 
 
-.ital {
-	font-style: italic;
-}
 
-.subtop {
-	margin: 1vw;
-}
 
-input {
-	margin: 0 5px;
-}
 
-.result,.onlyTass,.onlyRia {
-	margin: 3vw auto;
-	padding: 3rem;
-}
-
-.onlyTass > h2,.onlyRia > h2 {
-	font-weight: bold;
-}
 
 
 

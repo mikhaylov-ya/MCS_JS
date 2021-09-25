@@ -5,21 +5,41 @@ const tassRef = document.getElementById('tassRef');
 const riaRef = document.getElementById('riaRef');
 const tassTime = document.getElementById('tassTime');
 const riaTime = document.getElementById('riaTime');
+const onlyTass = document.querySelector('.onlyTass');
+const onlyRia = document.querySelector('.onlyRia');
 
 
+// arr.sort( (a, b) => a - b );
 
 subtopic.onsubmit = function(e) {
 	if (subtName.value == '') {
 		e.preventDefault();
 		result.innerHTML += '';
 	}
+
+  else if (tassTime.value == false && riaTime.value == false && riaRef.value == false) {
+    e.preventDefault();
+    let tag = document.createElement("p");
+    let tex = document.createTextNode(`${subtName.value} - ${tassRef.value}`);
+    tag.append(tex);
+    onlyTass.append(tag);
+    subtopic.reset();
+  }
+  else if (tassTime.value == false && riaTime.value == false && tassRef.value == false) {
+    e.preventDefault();
+    let tag = document.createElement("p");
+    let tex = document.createTextNode(`${subtName.value} - ${riaRef.value}`);
+    tag.append(tex);
+    onlyRia.append(tag);
+    subtopic.reset();
+  }
 	else if (tassTime.value == false || riaTime.value == false) {
 		e.preventDefault();
 		let tag = document.createElement("p");
 		tag.className = 'ital';
 		let tex = document.createTextNode(`${subtName.value} (${tassRef.value} / ${riaRef.value})`);
-		tag.appendChild(tex);
-		result.appendChild(tag);
+		tag.append(tex);
+		result.append(tag);
 		//result.innerHTML = result.innerHTML += `${subtName.value} (${tassRef.value} / ${riaRef.value})\n`;
 		//result.style.fontStyle = 'italic';
 		subtopic.reset();
@@ -29,11 +49,13 @@ subtopic.onsubmit = function(e) {
 		e.preventDefault();
 		let tag = document.createElement("p");
 		let tex = document.createTextNode(`${subtName.value} (${tassTime.value} / ${riaTime.value}) (${tassRef.value} / ${riaRef.value})`);
-		tag.appendChild(tex);
-		result.appendChild(tag);
+		tag.append(tex);
+		result.append(tag);
 		subtopic.reset();
 	}
 };
+
+
 
 
 

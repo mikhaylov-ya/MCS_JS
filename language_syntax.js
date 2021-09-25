@@ -150,11 +150,47 @@ for (elem of Array) // перебор элементов в массиве
 for (key in Object) // перебор по ключам в ОБЪЕКТЕ
 
 
+//forEach
+
+array.forEach(function(item) {
+
+});								// кладем функцию которая применяется к каждому элементу массива
 
 
 
+/************************* API И ООП ************************/
 
+//JSON -- структуры данных, представляющие из себя ОБЪЕКТЫ двух типов:
+// 1. Массив (упорядоченный)
+// 2. Ключи/значения (неупорядоченный)
+// ключи ДОЛЖНЫ быть в КАВЫЧКАХ + одинарные кавычки НЕЛЬЗЯ использовать
 
+// Может храниться как список ключей в смысле JS
+const apiDATA = [{
+	"city" : "Moscow",
+	"temp" : 10,
+	"pressure" : 250
+},
+{
+	"city" : "Saint-Petersburg",
+	"temp" : 15,
+	"pressure" : 180
+},
+{
+	"city" : "Omsk",
+	"temp" : -5,
+	"pressure" : 200
+}]
+
+// Или как строка!
+
+const apiString = '[{"city" : "Moscow", "temp" : 10, "pressure" : 250},{"city" : "Saint-Petersburg", "temp" : 15, "pressure" : 180},{"city" : "Omsk", "temp" : -5, "pressure" : 200}]'
+
+// Методы работы с JSON -- parse и stringify
+
+const wow = JSON.parse(apiString); // превращает строку в типичный JS объект
+
+const wow2 = JSON.stringify(apiDATA) // превратит объект в строку
 
 
 
