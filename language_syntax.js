@@ -192,7 +192,81 @@ const wow = JSON.parse(apiString); // превращает строку в ти�
 
 const wow2 = JSON.stringify(apiDATA) // превратит объект в строку
 
+// Подключение к внешнему серверу, JSON-API
 
 
+const APIkey = '69a2a03e267544a63fc6b19e9e34ac2a';
+const city = 'Moscow';
+const url = 'http://api.openweathermap.org/data/2.5/weather?q='+city+'&appid='+APIkey;
+
+let xhr = new XMLHttpRequest();
+
+xhr.open('GET',url,false);
+
+xhr.send();
+
+console.log(xhr.status + ' ' + xhr.statusText);
+
+// Прототипирование и наследование
+
+// __proto__ показывает прототип объекта/строки/числа, любой сущности, в консол
+// то есть "предка" и присущие ему СВОЙСТВА и МЕТОДЫ
+
+let Animal = {
+	canEat: true,
+	hasParents: true
+}
+
+let Cow = {				//Cow унаследует свойства от animal
+	givesMilk: true,
+	__proto__: Animal
+}
 
 
+console.log(Cow.givesMilk);
+console.log(Cow.canEat);
+
+// Class и экземляр
+
+// 1. Создание класса через ФУНКЦИЮ-КОНСТРУКТОР с this и инстанциация через NEW
+
+function Person(name) {
+  this.name = name;
+  this.greeting = function() {
+    alert('Hi! I\'m ' + this.name + '.');
+  };
+}	
+
+let person1 = new Person('Bob');
+
+// Без сахара в виде THIS создание класса выглядело бы так:
+function createNewPerson(name) {
+  const obj = {};						// создаем объект...
+  obj.name = name;
+  obj.greeting = function() {
+    alert('Hi! I\'m ' + obj.name + '.');
+  };
+  return obj;							// возвращаем его...
+}
+
+
+// Классы и подклассы в ES6
+
+class User {
+	constructor(name, email, password) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}  // конструктор с ключами отдельно, методы отдельно (см скобки)
+
+	sayHi() {
+		return 'Hello' + this.name;
+	}
+		
+	
+}
+
+class Female extends User {
+	sayHi() {
+		return `Hello ${this.name}! Ты зарегистрирована.`
+}
