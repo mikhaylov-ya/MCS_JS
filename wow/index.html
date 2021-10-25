@@ -12,21 +12,54 @@
 <body>
 	<div>
 		<form action="" class="subtop">
-			<input type="text" name="subtopic" id="subtopic" placeholder="Подтема">
-			(<input type="text" name="tassTime" id="tassTime" placeholder="Время ТАСС"> / <input type="text" name="riaTime" id="riaTime" placeholder="Время РИА">)
-			(<input type="number" name="tassRef" id="tassRef" placeholder="Ссылки ТАСС"> / <input type="number" name="riaRef" id="riaRef" placeholder="Ссылки РИА">)
+			<input type="text" name="subtopic" id="subtopic" placeholder="Подтема или сообщение">
+
+			(<input type="text" name="tassTime" id="tassTime" placeholder="Время ТАСС"> 
+			/ 
+			<input type="text" name="riaTime" id="riaTime" placeholder="Время РИА">)
+
+			(<input type="number" name="tassRef" id="tassRef" placeholder="Ссылки ТАСС"> 
+			/ 
+			<input type="number" name="riaRef" id="riaRef" placeholder="Ссылки РИА">)
+
 			<input type="submit" value="В разбор">
 		</form>
 	</div>
-	<div class="result"></div>
-	<div class="onlyTass">
-		<h2>Только у ТАСС</h2>
+	<div class="intro">
+
+		<div class="tassIntro">
+			
+		</div>
+
+		<div class="riaIntro">
+			
+		</div>
 		
 	</div>
-	<div class="onlyRia">
-		<h2>Только у РИА</h2>
-		
+
+	<div class="result">
+		<div class="common">
+			
+		</div>
+
+
+		<div class="onlys">
+			<p><b>Только у ТАСС</b></p>
+
+			<ul class="onlyTass">
+				
+			</ul>
+			
+			<p><b>Только у РИА</b></p>
+
+			<ul class="onlyRia">
+				
+			</ul>
+		</div>
 	</div>
+
+
 	<script src="js/script.js"></script>
 </body>
 </html>
+

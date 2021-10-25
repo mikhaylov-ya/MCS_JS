@@ -35,7 +35,6 @@ img {
 
 * { box-sizing: inherit; }
 
-ol, ul { list-style: none; }
 
 blockquote, q { quotes: none; }
 
@@ -69,7 +68,9 @@ form {
 
 
 
-
+ol,ul {
+	margin: 2rem;
+}
 
 
 

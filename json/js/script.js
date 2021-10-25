@@ -1,5 +1,4 @@
 const APIkey = '69a2a03e267544a63fc6b19e9e34ac2a';
-const city = document.getElementById('city');
 const form = document.forms[0];
 const result = document.querySelector('.result');
 
@@ -10,7 +9,7 @@ const result = document.querySelector('.result');
 
 form.onsubmit = function(elem) {
 	elem.preventDefault();
-	const url = 'http://api.openweathermap.org/data/2.5/weather?q=Moscow&appid='+APIkey;
+	const url = 'http://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=69a2a03e267544a63fc6b19e9e34ac2a';
 
 	let xhr = new XMLHttpRequest();
 
@@ -96,4 +95,29 @@ function Person(first, last, age, gender, interests) {
 
 let person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
 
+Person.prototype.farewell = function() {
+  alert(this.name.first + ' has left the building. Bye for now!');
+}; // добавляем ф-ию в прототип
 
+
+class Shape {
+  constructor(name, sides, sideLength) {
+    this.name = name;
+    this.sides = sides;
+    this.sideLength = sideLength;
+  }
+  calcPerimeter() {return this.sides * this.sideLength;}
+}
+
+class Square extends Shape {
+  constructor(sideLength) {
+    super()
+    this.name = 'square'
+    this.sides = 4
+  }
+  calcArea() {return this.sideLength * this.sideLength;}
+}
+
+const square = new Square(5);
+
+console.log(square.calcArea());

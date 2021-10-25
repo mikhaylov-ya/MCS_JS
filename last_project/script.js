@@ -1,8 +1,5 @@
 const form = document.forms[0];
-const url = 'http://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=69a2a03e267544a63fc6b19e9e34ac2a';
-const xhr = new XMLHttpRequest();
-xhr.open('GET', url, false);
-xhr.send();
+
 
 class Person {
 	constructor(name) {
@@ -14,12 +11,16 @@ class Person {
 	hasMoney() {return this.happiness += 1;}
 
 	isSunny() {
+		const url = 'http://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=69a2a03e267544a63fc6b19e9e34ac2a';
+		const xhr = new XMLHttpRequest();
+		xhr.open('GET', url, false);
+		xhr.send();
 		const data = JSON.parse(xhr.responseText);
 		if ((data.main.temp - 273) > 15) {
 			this.happiness += 1;
 			return this.happiness;
 		}
-		else return this.happiness
+		return this.happiness
 	}
 }
 
@@ -39,9 +40,11 @@ form.onsubmit = function(elem) {
 	if (money === 'yes') person.hasMoney();
 
 	person.isSunny();
-	usname.textContent = inpname.value;
+	usname.textContent = person.name;
 
 	if (person.happiness == 4) icon.textContent = '😄'
 	else if (person.happiness == 3 || person.happiness == 2) {icon.textContent = '😐'}
 	else icon.textContent = '☹️'
+
+	form.reset();
 }

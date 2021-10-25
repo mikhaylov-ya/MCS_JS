@@ -1,0 +1,36 @@
+.author {
+    top: 0px;
+    /* write here */
+    position: sticky;
+}
+
+.book_container {
+  box-sizing: border-box;
+}
+
+dl {
+  margin: 0;
+  padding: 24px 0 0 0;
+}
+
+.author {
+  background: rgb(228, 223, 185);
+  border-bottom: 1px solid #989EA4;
+  border-top: 1px solid #717D85;
+  color: rgb(95, 95, 95);
+  font: bold 18px/21px Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 2px 0 0 12px;
+}
+
+dd {
+  font: bold 20px/45px Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0 0 0 12px;
+  white-space: nowrap;
+}
+
+dd + dd {
+  border-top: 1px solid #CCC;
+}
+

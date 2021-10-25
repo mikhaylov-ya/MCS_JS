@@ -43,6 +43,8 @@ let myFunc = function(elem, color) {
 	elem.style.backgroundColor = color; //функция, лежащая в переменной!
 }
 
+myFunc = (elem,color) => elem.style.backgroundColor = color // то же, но в стрелочной функции
+
 //let && var
 //var - глобальная переменная, let - блочная область видимости. 
 //let не действует за пределами условного блока, в отличии от var
@@ -236,8 +238,12 @@ function Person(name) {
     alert('Hi! I\'m ' + this.name + '.');
   };
 }	
-
+// Инстанциация: способ 1
 let person1 = new Person('Bob');
+
+// Инстанциация: способ 2 - create создает новый объект используя другой как прототип
+
+let triangle = Object.create(Shape)
 
 // Без сахара в виде THIS создание класса выглядело бы так:
 function createNewPerson(name) {
@@ -266,7 +272,19 @@ class User {
 	
 }
 
+
 class Female extends User {
 	sayHi() {
 		return `Hello ${this.name}! Ты зарегистрирована.`
 }
+
+
+
+let func = (data) => {
+ let [temp,action] = data.toString().trim().split('\n');
+ let [current, target] = temp.split(' ').map(n => parseInt(n));
+
+    //тут решение
+
+    return result;
+};

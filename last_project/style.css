@@ -19,6 +19,8 @@ body {
 	align-items: center;
 	font-size: 120px;
 }
+
+
 form {
 	width: 80%;
 	margin: auto;
@@ -57,3 +59,4 @@ input[type="submit"] {
 input[type="submit"]:hover {
 	opacity: .8;
 }
+
