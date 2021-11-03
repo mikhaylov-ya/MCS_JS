@@ -18,7 +18,7 @@ const tassIntroCom = document.querySelector(".tassIntroCom");
 
 class JFF extends Array {
   sum(key) {
-    return this.reduce((a, b) => parseInt(a) + (parseInt(b[key]) || 0), 0);
+    return this.reduce((a, b) => parseInt(a,10) + (parseInt(b[key],10) || 0), 0);
   }
 }
 
@@ -47,7 +47,7 @@ function toText(arr, agency) {
     let str1 = "ТАСС впереди по ";
     tassIntroCom.innerHTML = "";
 
-    arr.sort((a, b) => parseInt(a.tass - a.ria) < parseInt(b.tass - b.ria));
+    arr.sort((a, b) => parseInt(a.tass - a.ria,10) < parseInt(b.tass - b.ria,10));
 
     for (e of arr) str1 += `${e.name} (+${e.tass - e.ria}), `;
     let tex1 = document.createTextNode(str1);
@@ -60,7 +60,7 @@ function toText(arr, agency) {
     let str = "РИА впереди по ";
 
     riaIntroCom.innerHTML = "";
-    arr.sort((a, b) => parseInt(a.ria - a.tass) < parseInt(b.ria - b.tass));
+    arr.sort((a, b) => parseInt(a.ria - a.tass,10) < parseInt(b.ria - b.tass,10));
 
     for (e of arr) str += `${e.name} (-${e.ria - e.tass}), `;
 
@@ -91,7 +91,7 @@ subtopic.onsubmit = function (e) {
 
     onlyTassNews.push(onlyTass1);
     if (onlyTassNews.length > 1) {
-      onlyTassNews.sort((a, b) => parseInt(a.quantity) < parseInt(b.quantity));
+      onlyTassNews.sort((a, b) => parseInt(a.quantity,10) < parseInt(b.quantity,10));
     }
 
     onlyTass.innerHTML = "";
@@ -130,7 +130,7 @@ subtopic.onsubmit = function (e) {
     onlyRiaNews.push(onlyRia1);
 
     if (onlyRiaNews.length > 1) {
-      onlyRiaNews.sort((a, b) => parseInt(a.quantity) < parseInt(b.quantity));
+      onlyRiaNews.sort((a, b) => parseInt(a.quantity,10) < parseInt(b.quantity,10));
     }
 
     let total = onlyRiaNews.sum("quantity");
@@ -165,27 +165,27 @@ subtopic.onsubmit = function (e) {
       ria: riaRef.value,
     };
 
-    if (parseInt(commonSubtopic.tass) > parseInt(commonSubtopic.ria))
+    if (parseInt(commonSubtopic.tass,10) > parseInt(commonSubtopic.ria, 10))
       tassFirstNews.push(commonSubtopic);
-    else if (parseInt(commonSubtopic.ria) > parseInt(commonSubtopic.tass))
+    else if (parseInt(commonSubtopic.ria, 10) > parseInt(commonSubtopic.tass, 10))
       riaFirstNews.push(commonSubtopic);
     else noFirstNews.push(commonSubtopic);
 
     if (tassFirstNews.length > 1) {
       tassFirstNews.sort(
-        (a, b) => parseInt(a.tass + a.ria) < parseInt(b.tass + b.ria)
+        (a, b) => (parseInt(a.tass) + parseInt(a.ria)) < (parseInt(b.tass) + parseInt(b.ria))
       );
     }
 
     if (riaFirstNews.length > 1) {
       riaFirstNews.sort(
-        (a, b) => parseInt(a.tass + a.ria) < parseInt(b.tass + b.ria)
+        (a, b) => (parseInt(a.tass) + parseInt(a.ria)) < (parseInt(b.tass) + parseInt(b.ria))
       );
     }
 
     if (noFirstNews.length > 1) {
       noFirstNews.sort(
-        (a, b) => parseInt(a.tass + a.ria) < parseInt(b.tass + b.ria)
+        (a, b) => (parseInt(a.tass + parseInt(a.ria)) < (parseInt(b.tass) + parseInt(b.ria))
       );
     }
 
