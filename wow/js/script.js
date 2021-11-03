@@ -10,8 +10,11 @@ const onlyRia = document.querySelector(".onlyRia");
 const common = document.querySelector(".common");
 const riaIntro = document.querySelector(".riaIntro");
 const tassIntro = document.querySelector(".tassIntro");
-
-// arr.sort( (a, b) => a - b );
+const tassFirst = document.querySelector(".tassFirst");
+const riaFirst = document.querySelector(".riaFirst");
+const noFirst = document.querySelector(".noFirst");
+const riaIntroCom = document.querySelector(".riaIntroCom");
+const tassIntroCom = document.querySelector(".tassIntroCom");
 
 class JFF extends Array {
   sum(key) {
@@ -21,11 +24,60 @@ class JFF extends Array {
 
 let onlyRiaNews = new JFF(...[]);
 let onlyTassNews = new JFF(...[]);
+let riaFirstNews = new JFF(...[]);
+let tassFirstNews = new JFF(...[]);
+let noFirstNews = new JFF(...[]);
+
+function toAnalyze(arr, slot) {
+  for (e of arr) {
+    let tag = document.createElement("li");
+    let tex;
+    if (e.timeTass)
+      tex = document.createTextNode(
+        `${e.name} (${e.timeTass} / ${e.timeRia}) (${e.tass} / ${e.ria})`
+      );
+    else tex = document.createTextNode(`${e.name} (${e.tass} / ${e.ria})`);
+    tag.append(tex);
+    slot.append(tag);
+  }
+}
+
+function toText(arr, agency) {
+  if (agency === "tass") {
+    let str1 = "ТАСС впереди по ";
+    tassIntroCom.innerHTML = "";
+
+    arr.sort((a, b) => parseInt(a.tass - a.ria) < parseInt(b.tass - b.ria));
+
+    for (e of arr) str1 += `${e.name} (+${e.tass - e.ria}), `;
+    let tex1 = document.createTextNode(str1);
+    let tag1 = document.createElement("p");
+    tag1.append(tex1);
+    tassIntroCom.append(tag1);
+  }
+
+  if (agency === "ria") {
+    let str = "РИА впереди по ";
+
+    riaIntroCom.innerHTML = "";
+    arr.sort((a, b) => parseInt(a.ria - a.tass) < parseInt(b.ria - b.tass));
+
+    for (e of arr) str += `${e.name} (-${e.ria - e.tass}), `;
+
+    let tex = document.createTextNode(str);
+    let tag = document.createElement("p");
+    tag.append(tex);
+    riaIntroCom.append(tag);
+  }
+}
 
 subtopic.onsubmit = function (e) {
   if (subtName.value == "") {
     e.preventDefault();
-  } else if (
+  }
+
+  // Эксклюзивы ТАСС
+  else if (
     tassTime.value == false &&
     riaTime.value == false &&
     riaRef.value == false
@@ -46,6 +98,7 @@ subtopic.onsubmit = function (e) {
     tassIntro.innerHTML = "";
 
     let total = onlyTassNews.sum("quantity");
+
     for (e of onlyTassNews) {
       let tag = document.createElement("li");
       let tex = document.createTextNode(`${e.name} - ${e.quantity}`);
@@ -54,12 +107,15 @@ subtopic.onsubmit = function (e) {
     }
 
     let tassUniq = document.createTextNode(
-      `У ТАСС ${total} ссылок на сообщения, которых нет у РИА.`
+      `Кроме того, ${total} ссылок на сообщения, которые цитируются только у ТАСС, в том числе`
     );
     tassIntro.append(tassUniq);
 
     subtopic.reset();
-  } else if (
+  }
+
+  // Эксклюзивы РИА
+  else if (
     tassTime.value == false &&
     riaTime.value == false &&
     tassRef.value == false
@@ -90,29 +146,61 @@ subtopic.onsubmit = function (e) {
     }
 
     let riaUniq = document.createTextNode(
-      `У РИА ${total} ссылок на сообщения, которых нет у ТАСС.`
+      `Кроме того, ${total} ссылок на сообщения, которые цитируются только у РИА, в том числе`
     );
     riaIntro.append(riaUniq);
 
     subtopic.reset();
-  } else if (tassTime.value == false || riaTime.value == false) {
+  }
+
+  // Подтемы!
+  else {
     e.preventDefault();
-    let tag = document.createElement("p");
-    tag.className = "ital";
-    let tex = document.createTextNode(
-      `${subtName.value} (${tassRef.value} / ${riaRef.value})`
-    );
-    tag.append(tex);
-    common.append(tag);
-    subtopic.reset();
-  } else {
-    e.preventDefault();
-    let tag = document.createElement("p");
-    let tex = document.createTextNode(
-      `${subtName.value} (${tassTime.value} / ${riaTime.value}) (${tassRef.value} / ${riaRef.value})`
-    );
-    tag.append(tex);
-    common.append(tag);
+
+    let commonSubtopic = {
+      name: subtName.value,
+      timeTass: tassTime.value,
+      timeRia: riaTime.value,
+      tass: tassRef.value,
+      ria: riaRef.value,
+    };
+
+    if (parseInt(commonSubtopic.tass) > parseInt(commonSubtopic.ria))
+      tassFirstNews.push(commonSubtopic);
+    else if (parseInt(commonSubtopic.ria) > parseInt(commonSubtopic.tass))
+      riaFirstNews.push(commonSubtopic);
+    else noFirstNews.push(commonSubtopic);
+
+    if (tassFirstNews.length > 1) {
+      tassFirstNews.sort(
+        (a, b) => parseInt(a.tass + a.ria) < parseInt(b.tass + b.ria)
+      );
+    }
+
+    if (riaFirstNews.length > 1) {
+      riaFirstNews.sort(
+        (a, b) => parseInt(a.tass + a.ria) < parseInt(b.tass + b.ria)
+      );
+    }
+
+    if (noFirstNews.length > 1) {
+      noFirstNews.sort(
+        (a, b) => parseInt(a.tass + a.ria) < parseInt(b.tass + b.ria)
+      );
+    }
+
+    noFirst.innerHTML = "";
+    riaFirst.innerHTML = "";
+    tassFirst.innerHTML = "";
+
+    toAnalyze(tassFirstNews, tassFirst);
+
+    toAnalyze(riaFirstNews, riaFirst);
+    toAnalyze(noFirstNews, noFirst);
+
+    toText(tassFirstNews, "tass");
+    toText(riaFirstNews, "ria");
+
     subtopic.reset();
   }
 };
