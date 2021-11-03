@@ -185,7 +185,7 @@ subtopic.onsubmit = function (e) {
 
     if (noFirstNews.length > 1) {
       noFirstNews.sort(
-        (a, b) => (parseInt(a.tass + parseInt(a.ria)) < (parseInt(b.tass) + parseInt(b.ria))
+        (a, b) => (parseInt(a.tass) + parseInt(a.ria)) < (parseInt(b.tass) + parseInt(b.ria))
       );
     }
 
